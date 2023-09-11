@@ -1,6 +1,105 @@
-<h1>Genshin Impact Weapon Inventory</h1>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genshin Impact Weapon Inventory</title>
+    <style>
+        @font-face {
+          font-family: 'GenshinFont';
+          src: url("{% static 'zh-cn.ttf' %}") format('truetype');
+        }
 
-<h5>Name: </h5>
-<p>{{ name }}</p>
-<h5>Class: </h5>
-<p>{{ class }}</p>
+        *{
+          font-family: 'GenshinFont';
+        }
+
+        h1, h3 {
+            text-align: center;
+        }
+
+        table, th, td {
+            border:1px solid black;
+        }
+
+        td {
+          font-size: 13px;
+        }
+
+        #center {
+          text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Genshin Impact Weapon Inventory</h1>
+    <h3>Name : {{ name }}</h3>
+    <h3>NPM : {{ npm }}</h3>
+    <h3>Class : {{ class }}</h3>
+
+    <br>
+
+    <table style="width:100%">
+        <tr>
+          <th>Name</th>
+          <th>Image</th>
+          <th>Amount</th>
+          <th>Description</th>
+          <th>Base Atk</th>
+          <th>Substat</th>
+          <th>Passive</th>
+          <th>Type</th>
+          <th>Rarity</th>
+        </tr>
+
+        <tr>
+          <td>Aqua Simulacra</td>
+          <td><img src="{% static 'Weapon_Aqua_Simulacra_3D.webp' %}" width="100"/></td>
+          <td id="center">2</td>
+          <td>It is said that water has no fixed color or form, and can either serve brilliantly as blade or bow. Out of all the substances in the world, water alone is the gentlest, and also the keenest. Among the many curious weapons of the world, this fine bow has the inscrutable ability to summon water.</td>
+          <td id="center">542</td>
+          <td id="center">
+            <p style="font-weight: bold;">Crit Dmg</p>
+            <p>88.2%</p>
+          </td>
+          <td>HP is increased by 16%. When there are opponents nearby, the DMG dealt by the wielder of this weapon is increased by 20%. This will take effect whether the character is on-field or not.</td>
+          <td id="center">
+            <p>Bow</p>
+            <p><img src="{% static 'Icon_Bow.webp' %}" height="40" width="40"></p>
+          </td>
+          <td id="center">
+            <p>5 star</p>
+            <p><img src="{% static 'Icon_5_Stars.webp' %}" height="20"></p>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Freedom Sworn</td>
+          <td><img src="{% static 'Weapon_Freedom-Sworn_Wish.webp' %}" width="100" height="200"></td>
+          <td id="center">2</td>
+          <td>In the distant past, in a silent city ringed in from all sides. Cheers erupted to the sound of a lyre and at last pierced the prison of raging winds. A certain group, comprised of a youth, a spirit, an archer, a knight and a wandering flame-haired warrior. Came and stood before the tower that loomed like a sky-piercing lance. That cast a shadow like that of a titan. And they swore to be free, and vowed to shatter the rule of the tower's lone tyrant.</td>
+          <td id="center">608</td>
+          <td id="center">
+            <p style="font-weight: bold;">Elemental Mastery</p>
+            <p>198</p>
+          </td>
+          <td>A part of the "Millennial Movement" that wanders amidst the winds.
+            Increases DMG by 10%.
+            When the character wielding this weapon triggers Elemental Reactions, they gain a Sigil of Rebellion. This effect can be triggered once every 0.5s and can be triggered even if said character is not on the field.
+            When you possess 2 Sigils of Rebellion, all of them will be consumed and all nearby party members will obtain "Millennial Movement: Song of Resistance" for 12s.
+            "Millennial Movement: Song of Resistance" increases Normal, Charged, and Plunging Attack DMG by 16% and increases ATK by 20%. Once this effect is triggered, you will not gain Sigils of Rebellion for 20s.
+            Of the many effects of the "Millennial Movement," buffs of the same type will not stack.</td>
+          <td id="center">
+            <p>Sword</p>
+            <p><img src="{% static 'Sword_Icon.png' %}" height="35" width="35"></p>
+          </td>
+          <td id="center">
+            <p>5 star</p>
+            <p><img src="{% static 'Icon_5_Stars.webp' %}" height="20"></p>
+          </td>
+        </tr>
+      </table>
+</body>
+</html>

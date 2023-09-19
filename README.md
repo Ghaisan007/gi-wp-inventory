@@ -49,7 +49,7 @@ Untuk pembuatan form input data untuk menambahkan objek model, pertama dibuat `f
 5. Show JSON By ID
 ![show_xml](./images/show_json_by_id.jpg)
 
-============================================================================
+===========================================================================
 
 # Tugas 2
 

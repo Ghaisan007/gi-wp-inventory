@@ -39,6 +39,7 @@ Untuk pembuatan form input data untuk menambahkan objek model, pertama dibuat `f
 ## Screenshot Hasil Akses URL pada Postman
 
 1. Show HTML
+![show_html_postman](./images/show_html_postman.jpg)
 ![show_html](./images/show_html.jpg)
 2. Show XML
 ![show_xml](./images/show_xml.jpg)
@@ -49,7 +50,6 @@ Untuk pembuatan form input data untuk menambahkan objek model, pertama dibuat `f
 5. Show JSON By ID
 ![show_xml](./images/show_json_by_id.jpg)
 
-===========================================================================
 
 # Tugas 2
 

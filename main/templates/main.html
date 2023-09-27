@@ -33,7 +33,15 @@
         <td>{{item.weapon_type}}</td>
         <td>{{item.rarity}}</td>
         <td>
-          {% if item.id %}  <!-- Memastikan bahwa product.id ada dan valid -->
+          {% if item.id %}  <!-- Memastikan bahwa item.id ada dan valid -->
+              <a href="{% url 'main:increase_amount' item.id %}">
+                  <button>Add Amount</button>
+              </a>
+              
+              <a href="{% url 'main:decrease_amount' item.id %}">
+                  <button>Reduce Amount</button>
+              </a>
+
               <a href="{% url 'main:delete_item' item.id %}">
                   <button>Delete Item</button>
               </a>

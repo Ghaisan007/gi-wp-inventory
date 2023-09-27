@@ -38,6 +38,26 @@ def create_item(request):
     context = {'form': form}
     return render(request, "create_item.html", context)
 
+def delete_item(request, item_id):
+    Item.objects.get(pk=item_id).delete()
+    return HttpResponseRedirect(reverse('main:show_main'))
+
+def increase_amount(request, item_id):
+    item = Item.objects.get(pk=item_id)
+    item.amount += 1
+    item.save()
+    return HttpResponseRedirect(reverse('main:show_main'))
+
+def decrease_amount(request, item_id):
+    item = Item.objects.get(pk=item_id)
+    item.amount -= 1
+    if item.amount <= 0:
+        item.delete()
+        return redirect('main:show_main') 
+    else:
+        item.save()
+    return HttpResponseRedirect(reverse('main:show_main'))
+
 def show_xml(request):
     data = Item.objects.all()
 
@@ -92,7 +112,3 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
-
-def delete_item(request, item_id):
-    Item.objects.get(pk=item_id).delete()
-    return HttpResponseRedirect(reverse('main:show_main'))

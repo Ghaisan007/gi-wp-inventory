@@ -598,6 +598,7 @@ Pada bagian register ini, `body` digunakan untuk setting background image dari s
 Pada looping form, ditambahkan juga kode ini untuk menampilkan pesan jika pembuatan username dan password tidak sesuai ketentuan.
 
 5. Pada `main.html`, internal CSS yang digunakan adalah sebagai berikut :
+```css
 <style>
   body {
     background-image: url("{% static 'fontaine_tower.jpg' %}");
@@ -631,6 +632,7 @@ Pada looping form, ditambahkan juga kode ini untuk menampilkan pesan jika pembua
     text-shadow:0px 1px 0px #2f6627;
   }
 </style>
+```
 
 Pada bagian main ini, `body` digunakan untuk setting background image dari static folder pada main page. Main container digunakan untuk positioning, dan main sebagai box untuk tampilan main. ID selector title untuk styling khusus untuk `<h1>` pada main page.
 

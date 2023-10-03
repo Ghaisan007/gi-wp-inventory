@@ -1,45 +1,74 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block meta %}
     <title>Login</title>
 {% endblock meta %}
 
 {% block content %}
+<style>
+    body {
+        background-image: url("{% static 'fontaine.webp' %}");
+        background-size: cover; /* Adjust to your preference */
+        background-repeat: no-repeat;
+        background-attachment: fixed; /* Keeps the background fixed while scrolling */
+    }
 
-<div class = "login">
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+        margin: auto;
+    }
 
-    <h1>Login</h1>
+    .login {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        padding: 30px;
+        width: 400px;
+    }
+</style>
 
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-            </tr>
-                    
-            <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
-        </table>
-    </form>
-
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}     
-        
-    Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
-
+<div class="login-container">
+    <div class = "login">
+        <h1>Welcome Traveler !</h1>
+        <h5>Please input your username and password !</h5>
+    
+        <img class="centered-image" src="{% static 'paimon_wave.webp' %}" width="200">
+        <br>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+                </tr>
+                        
+                <tr>
+                    <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
+                </tr>
+            </table>
+            <br>
+            <div class="centered-container">
+                <input id="blue-button" type="submit" value="Login">
+            </div>
+        </form>
+    
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}     
+        <br>
+        <div style="text-align: center;">
+            <a>Don't have an account yet?</a> 
+            <a href="{% url 'main:register' %}">Register Now</a>
+        </div>
+    </div>
 </div>
 
 {% endblock content %}

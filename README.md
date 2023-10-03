@@ -15,6 +15,7 @@ Berikut adalah shortcut untuk tugas :
 - [Tugas 2](#tugas-2)
 - [Tugas 3](#tugas-3)
 - [Tugas 4](#tugas-4)
+- [Tugas 5](#tugas-5)
 
 # Tugas 2
 
@@ -359,3 +360,278 @@ def create_item(request):
 ...
 ```
 Yang terakhir adalah dilakukan migrasi model dengan `python manage.py makemigrations` dan mengaplikasikan migrasi yang dilakukan pada poin sebelumnya dengan `python manage.py migrate`.
+
+# Tugas 5
+
+## Jelaskan manfaat dari setiap _element selector_ dan kapan waktu yang tepat untuk menggunakannya.
+
+1. __Element Selector__, merupakan selector yang berfungsi untuk memilih elemen HTML berdasarkan nama dari elemen yang di _select_. 
+Element selector cocok digunakan untuk mengaplikasikan _style_ CSS pada semua elemen dengan tag yang sama. Sebagai contoh `p` untuk memilih semua paragraf dalam HTML:
+```css
+p {
+  text-align: center;
+  color: red;
+}
+```
+
+2. __Class Selector__, merupakan selector yang berfungsi untuk memilih elemen HTML berdasarkan atribut _class_ yang di _select_. 
+Class selector cocok digunakan untuk mengaplikasikan _style_ pada elemen yang memiliki karakteristik yang sama dan cocok untuk dikelompokkan dalam kelompok tertentu. Sebagai contoh, semua elemen dengan `class="center"` akan di _select_ untuk dibuat menjadi _center_ dan diwarnai merah:
+```css
+.center {
+  text-align: center;
+  color: red;
+}
+```
+
+3. __ID Selector__, merupakan selector yang berfungsi untuk memilih elemen HTML berdasarkan atribut ID yang didefinisikan. 
+ID selector cocok digunakan untuk ketika ingin mengaplikasikan _style_ khusus pada satu elemen tertentu dalam HTML. Hal ini karena ID merupakan elemen yang unik dan ID selector digunakan untuk satu elemen khusus. Contoh jika ingin mengaplikasikan dalam elemen dengan `id="para1"`:
+```css
+#para1 {
+  text-align: center;
+  color: red;
+}
+```
+
+4. __Attribute Selector__, merupakan selector yang berfungsi untuk memilih elemen HTML berdasarkan atribut spesifik yang dipilih.
+Attribute selector cocok digunakan ketika ingin mengaplikasikan _style_ atau pada elemen-elemen yang memiliki atribut tertentu. Sebagai contoh, jika ingin mengaplikasikan dalam elemen dengan atribut `draggable="true"`:
+```css
+p[draggable] {
+    color: red;
+}
+```
+
+5. __Universal Selector__, merupakan selector yang berfungsi untuk memilih semua elemen HTML dalam halaman.
+Universal selector cocok digunakan ketika ingin mengaplikasikan _style_ untuk keseluruhan elemen HTML dalam halaman. Sebagai contoh kita ingin mengubah seluruh text menjadi _center aligned_ dan berwarna biru:
+```css
+* {
+  text-align: center;
+  color: blue;
+}
+```
+
+Sumber : [CSS Selectors](https://www.w3schools.com/css/css_selectors.asp#:~:text=CSS%20selectors%20are%20used%20to,a%20specific%20relationship%20between%20them)
+
+## Jelaskan HTML5 Tag yang kamu ketahui.
+
+1. `<html>` : Tag ini adalah elemen _root_ dari setiap halaman web HTML dan berisi seluruh konten halaman web.
+2. `<head>` : Tag ini berisi informasi tentang dokumen seperti judul halaman, meta tag, dan informasi lainnya yang tidak ditampilkan secara langsung di halaman.
+3. `<title>` : Tag ini digunakan untuk menentukan judul halaman web yang akan ditampilkan di bilah judul browser.
+4. `<meta>` : Tag ini digunakan untuk menyediakan informasi metadata tentang halaman, seperti _encoding character_, deskripsi, dan kata kunci.
+5. `<body>` : Tag ini adalah elemen yang berisi semua konten yang akan ditampilkan di halaman web, seperti teks, gambar, dan elemen-elemen lainnya.
+6. `<div>` : Tag ini adalah elemen yang digunakan untuk mengelompokkan dan mengatur konten dalam sebuah blok. Sering digunakan dalam CSS untuk membuat tata letak halaman.
+7. `<p>` : Tag ini digunakan untuk menandai teks sebagai paragraf.
+8. `<img>` : Tag ini digunakan untuk menampilkan gambar di halaman web.
+9. `<a>` : Digunakan untuk membuat tautan atau hyperlink ke halaman web lain atau sumber daya lainnya.
+10. `<table>`, `<tr>`, `<td>`, `<th>` : Digunakan untuk membuat tabel dan mengatur data tabular.
+
+Sumber : [HTML Tags](https://www.w3schools.com/TAGS/default.asp)
+
+## Jelaskan perbedaan antara margin dan padding.
+
+1. Margin : Merepresentasikan ruang di luar elemen HTML.
+2. Padding : Merepresentasikan ruang di dalam elemen HTML, di antara tepi elemen dan kontennya sendiri.
+
+Margin :
+- Margin memungkinkan untuk menggunakan _auto setting_.
+- Margin juga memungkinkan untuk menggunakan _negative values_.
+- Tidak terpengaruh oleh _styling_ dari elemen yang lain.
+
+Padding :
+- Mencegah posisi text terlalu dekat dengan border.
+- Tidak bisa dilakukan _auto padding_.
+- Tidak bisa digunakan _negative values_.
+- Dapat dipengaruhi oleh _styling_ dari elemen yang lain.
+
+Sumber : [Margin vs Padding](https://mailchimp.com/resources/padding-vs-margin/#:~:text=Padding%20represents%20the%20amount%20of,whitespace%20available%20surrounding%20an%20element.)
+
+## Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+
+__DESAIN__
+
+- Bootstrap menawarkan set class CSS dan komponen yang telah dirancang sebelumnya dengan tampilan yang cukup terstruktur dan konsisten. Ini cocok untuk proyek dengan desain tradisional yang membutuhkan kerangka kerja yang stabil dan mudah digunakan.
+- Tailwind menganut pendekatan yang lebih "utility-first", di mana kita membangun antarmuka dengan menggabungkan class utilitas yang lebih kecil. Ini memberikan kebebasan kreatif yang lebih besar dan memungkinkan penggunaan class yang sangat spesifik.
+
+__FLEKSIBILITAS__
+
+- Bootstrap menawarkan kerangka kerja yang relatif terstruktur dengan banyak komponen yang telah dirancang sebelumnya. Ini memberikan stabilitas dan kemudahan penggunaan, tetapi mungkin memiliki batasan dalam hal fleksibilitas desain yang unik.
+- Tailwind memberikan fleksibilitas yang lebih besar dengan pendekatan "utility-first" yang memungkinkan kita membangun desain yang sangat kustom sesuai kebutuhan. kita memiliki kendali penuh atas gaya dan tata letak dengan kombinasi class utilitas yang spesifik.
+
+__UKURAN FILE__
+
+- Bootstrap adalah kerangka kerja yang lebih besar dalam hal ukuran file karena menyediakan banyak fitur dan komponen yang siap pakai. Ini mungkin berdampak pada kecepatan pengunduhan dan performa halaman web.
+- Tailwind dirancang untuk lebih ringan dalam hal ukuran file. Namun, ketika kita menggunakan banyak class utilitas dalam kode, ukuran file CSS dapat meningkat.
+
+__EKOSISTEM PENGEMBANGAN__
+
+- Bootstrap memiliki ekosistem yang sangat kuat dengan dokumentasi yang kaya, banyak tema dan template yang tersedia, serta dukungan komunitas yang luas. Ini membuatnya mudah untuk memulai dan mendapatkan sumber daya yang diperlukan.
+- Tailwind juga memiliki ekosistem yang berkembang pesat dengan dokumentasi yang baik dan komunitas yang aktif, kita dapat menemukan banyak sumber daya, plugin, dan integrasi dengan kerangka kerja JavaScript seperti React atau Vue.
+
+Sumber : [CSS Tailwind vs Bootstrap](https://codepolitan.com/blog/perbedaan-bootstrap-dan-tailwind)
+
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+1. Untuk menambahkan fitur `edit`, dibuat fungsi baru dengan nama `edit_item` yang menerima parameter `request` dan `id`. Setelah itu, dibuat berkas HTML baru dengan nama `edit_item.html` pada subdirektori `main/templates`, setelah itu lakukan _routing_ ke urlpatterns pada `urls.py`. Pada `main.html`, tambahkan button `Edit` dan pasang url `edit_item` untuk menjalankan fungsi edit item.
+
+2. Untuk styling, pada masing-masing file dibuat _styling_ CSS dengan metode internal. Pertama-tama pada `base.html`, dibuat _styling_ sebagai berikut :
+```css
+<style>
+    @font-face {
+        font-family: "GenshinFont";
+        src: url("{% static 'zh-cn.ttf' %}") format("truetype");
+    }
+
+    * {
+        font-family: "GenshinFont";
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .centered-image {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .centered-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #blue-button {
+        width:50% ;
+        background: linear-gradient(4deg, #756eca 6%, #5dcfcf 99%);
+        color: white;
+        border: 2px solid #25316D;
+        border-radius: 10px;
+        cursor: pointer;
+        padding: 10px 10px;
+        display: block
+    }
+</style>
+```
+Karena saya menggunakan custom font seperti Genshin Impact, maka digunakan `@font-face` untuk membuat `GenshinFont`. Setelah itu, diset supaya semua text menggunakan font ini. Untuk bagian kode lainnya merupakan styling umum seperti button dan positioning.
+
+3. Pada `login.html`, internal CSS yang digunakan adalah sebagai berikut :
+```css
+body {
+    background-image: url("{% static 'fontaine.webp' %}");
+    background-size: cover; /* Adjust to your preference */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Keeps the background fixed while scrolling */
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    margin: auto;
+}
+
+.login {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 30px;
+    width: 400px;
+}
+```
+Pada bagian login ini, `body` digunakan untuk setting background image dari static folder pada login page. Login container digunakan untuk positioning, dan login sebagai box untuk tampilan login.
+
+```html
+<img class="centered-image" src="{% static 'paimon_wave.webp' %}" width="200">
+```
+
+Pada bagian ini juga ditambahkan image maskot dari static sebagai hiasan.
+
+4. Pada `register.html`, internal CSS yang digunakan adalah sebagai berikut :
+```css
+<style>
+    body {
+        background-image: url("{% static 'travelers.jpg' %}");
+        background-size: cover; /* Adjust to your preference */
+        background-repeat: no-repeat;
+        background-attachment: fixed; /* Keeps the background fixed while scrolling */
+    }
+
+    .register-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+        margin: auto;
+    }
+
+    .register {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        padding: 30px;
+        width: 400px;
+    }
+</style>
+```
+Pada bagian register ini, `body` digunakan untuk setting background image dari static folder pada register page. Register container digunakan untuk positioning, dan register sebagai box untuk tampilan register.
+
+```html
+<!-- Menampilkan pesan kesalahan untuk field ini jika ada -->
+{% if field.errors %}
+<tr>
+    <td></td>
+    <td>
+        <ul>
+            {% for error in field.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </td>
+</tr>
+{% endif %}
+```
+
+Pada looping form, ditambahkan juga kode ini untuk menampilkan pesan jika pembuatan username dan password tidak sesuai ketentuan.
+
+5. Pada `main.html`, internal CSS yang digunakan adalah sebagai berikut :
+<style>
+  body {
+    background-image: url("{% static 'fontaine_tower.jpg' %}");
+    background-size: cover; /* Adjust to your preference */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Keeps the background fixed while scrolling */
+  }
+
+  .main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .main {
+    background-color: rgba(255, 255, 255, 0.8);
+    background-size: cover;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+    height: 100vh;
+  }
+
+  #title {
+    background:linear-gradient(4deg, #5dcfcf 6%, #ccd8e7 99%);
+    border-radius:10px;
+    border:1px solid;
+    display:inline-block;
+    padding:16px 31px;
+    text-shadow:0px 1px 0px #2f6627;
+  }
+</style>
+
+Pada bagian main ini, `body` digunakan untuk setting background image dari static folder pada main page. Main container digunakan untuk positioning, dan main sebagai box untuk tampilan main. ID selector title untuk styling khusus untuk `<h1>` pada main page.
+
+6. Pada `create_item.html`, _styling_ yang digunakan sama seperti pada `main.html` dan hanya dengan beberapa perubahan positioning.

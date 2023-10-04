@@ -22,6 +22,9 @@
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100vh;
   }
@@ -34,15 +37,27 @@
     padding:16px 31px;
     text-shadow:0px 1px 0px #2f6627;
   }
+
+  #item-display {
+    background-color: rgba(253, 255, 130, 0.8);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
 </style>
 
 <div class="main-container">
   <div class="main">
     <div style="text-align: center;">
-      <h1 id="title">Genshin Impact Weapon Inventory</h1>
-      <h3>Hello, {{ name }} !</h3>
-      <h3>NPM : {{ npm }}</h3>
-      <h3>Class : {{ class }}</h3>
+      <div style="display: inline-block; text-align: center;">
+        <img src="{% static 'paimon_emoji_uwu.webp' %}" width="170" height="170" style="vertical-align: middle;">
+        <h1 id="title" style="display: inline-block; vertical-align: middle;">Genshin Impact Weapon Inventory</h1>
+      </div>
+      
+      <div style="display: inline-block; text-align: center;">
+        <img src="{% static 'furina_emoji.png' %}" width="170" height="170" style="vertical-align: middle;">
+      </div>
+      <h3>Hello, {{ name }}!</h3>
+      <h3>NPM: {{ npm }}</h3>
+      <h3>Class: {{ class }}</h3>
     </div>
     
     <br>
@@ -60,7 +75,42 @@
       </tr>
     
       {% for item in items %}
-      <tr id="item-display">
+        {% if forloop.last %}
+          <tr id="item-display">
+            <td>{{item.name}}</td>
+            <td></td>
+            <td>{{item.amount}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.base_atk}}</td>
+            <td>{{item.substat}}</td>
+            <td>{{item.weapon_passive}}</td>
+            <td>{{item.weapon_type}}</td>
+            <td>{{item.rarity}}</td>
+            <td>
+              {% if item.id %} <!-- Memastikan bahwa item.id ada dan valid -->
+              <a href="{% url 'main:increase_amount' item.id %}">
+                <button>Add Amount</button>
+              </a>
+        
+              <a href="{% url 'main:decrease_amount' item.id %}">
+                <button>Reduce Amount</button>
+              </a>
+        
+              <a href="{% url 'main:delete_item' item.id %}">
+                <button>Delete Item</button>
+              </a>
+        
+              <a href="{% url 'main:edit_item' item.pk %}">
+                <button>
+                  Edit
+                </button>
+              </a>
+              {% endif %}
+            </td>
+          </tr>
+
+      {% else %}
+      <tr>
         <td>{{item.name}}</td>
         <td></td>
         <td>{{item.amount}}</td>
@@ -89,11 +139,12 @@
               Edit
             </button>
           </a>
-    
           {% endif %}
         </td>
+          
       </tr>
-      {% endfor %}
+      {% endif %}
+    {% endfor %}
     </table>
     
     <br />

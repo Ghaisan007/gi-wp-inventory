@@ -5,9 +5,11 @@
 <style>
   body {
     background-image: url("{% static 'fontaine_tower.jpg' %}");
-    background-size: cover; /* Adjust to your preference */
+    background-size: cover;
+    /* Adjust to your preference */
     background-repeat: no-repeat;
-    background-attachment: fixed; /* Keeps the background fixed while scrolling */
+    background-attachment: fixed;
+    /* Keeps the background fixed while scrolling */
   }
 
   .main-container {
@@ -18,24 +20,24 @@
 
   .main {
     background-color: rgba(255, 255, 255, 0.8);
-    background-size: cover;
+    background-size: auto;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    justify-content: center;
   }
 
   #title {
-    background:linear-gradient(4deg, #5dcfcf 6%, #ccd8e7 99%);
-    border-radius:10px;
-    border:1px solid;
-    display:inline-block;
-    padding:16px 31px;
-    text-shadow:0px 1px 0px #2f6627;
+    background: linear-gradient(4deg, #5dcfcf 6%, #ccd8e7 99%);
+    border-radius: 10px;
+    border: 1px solid;
+    display: inline-block;
+    padding: 16px 31px;
+    text-shadow: 0px 1px 0px #2f6627;
   }
 
   #item-display {
@@ -49,125 +51,308 @@
     <div style="text-align: center;">
       <div style="display: inline-block; text-align: center;">
         <img src="{% static 'paimon_emoji_uwu.webp' %}" width="170" height="170" style="vertical-align: middle;">
-        <h1 id="title" style="display: inline-block; vertical-align: middle;">Genshin Impact Weapon Inventory</h1>
+        <h2 id="title" style="display: inline-block; vertical-align: middle;">Genshin Impact Weapon Inventory</h2>
       </div>
-      
+
       <div style="display: inline-block; text-align: center;">
         <img src="{% static 'furina_emoji.png' %}" width="170" height="170" style="vertical-align: middle;">
       </div>
-      <h3>Hello, {{ name }}!</h3>
-      <h3>NPM: {{ npm }}</h3>
-      <h3>Class: {{ class }}</h3>
+      <h4>Hello, {{ name }}!</h4>
+      <h4>NPM: {{ npm }}</h4>
+      <h4>Class: {{ class }}</h4>
     </div>
-    
-    <br>
-    <table style="width:100%">
-      <tr>
-        <th>Name</th>
-        <th>Image</th>
-        <th>Amount</th>
-        <th>Description</th>
-        <th>Base Atk</th>
-        <th>Substat</th>
-        <th>Passive</th>
-        <th>Type</th>
-        <th>Rarity</th>
-      </tr>
-    
-      {% for item in items %}
-        {% if forloop.last %}
-          <tr id="item-display">
-            <td>{{item.name}}</td>
-            <td></td>
-            <td>{{item.amount}}</td>
-            <td>{{item.description}}</td>
-            <td>{{item.base_atk}}</td>
-            <td>{{item.substat}}</td>
-            <td>{{item.weapon_passive}}</td>
-            <td>{{item.weapon_type}}</td>
-            <td>{{item.rarity}}</td>
-            <td>
-              {% if item.id %} <!-- Memastikan bahwa item.id ada dan valid -->
-              <a href="{% url 'main:increase_amount' item.id %}">
-                <button>Add Amount</button>
-              </a>
-        
-              <a href="{% url 'main:decrease_amount' item.id %}">
-                <button>Reduce Amount</button>
-              </a>
-        
-              <a href="{% url 'main:delete_item' item.id %}">
-                <button>Delete Item</button>
-              </a>
-        
-              <a href="{% url 'main:edit_item' item.pk %}">
-                <button>
-                  Edit
-                </button>
-              </a>
-              {% endif %}
-            </td>
-          </tr>
 
-      {% else %}
-      <tr>
-        <td>{{item.name}}</td>
-        <td></td>
-        <td>{{item.amount}}</td>
-        <td>{{item.description}}</td>
-        <td>{{item.base_atk}}</td>
-        <td>{{item.substat}}</td>
-        <td>{{item.weapon_passive}}</td>
-        <td>{{item.weapon_type}}</td>
-        <td>{{item.rarity}}</td>
-        <td>
-          {% if item.id %} <!-- Memastikan bahwa item.id ada dan valid -->
-          <a href="{% url 'main:increase_amount' item.id %}">
-            <button>Add Amount</button>
-          </a>
-    
-          <a href="{% url 'main:decrease_amount' item.id %}">
-            <button>Reduce Amount</button>
-          </a>
-    
-          <a href="{% url 'main:delete_item' item.id %}">
-            <button>Delete Item</button>
-          </a>
-    
-          <a href="{% url 'main:edit_item' item.pk %}">
-            <button>
-              Edit
-            </button>
-          </a>
-          {% endif %}
-        </td>
-          
-      </tr>
-      {% endif %}
-    {% endfor %}
-    </table>
-    
+    <br>
+    <!-- <table class="table" style="width:100%">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Image</th>
+          <th>Amount</th>
+          <th>Description</th>
+          <th>Base Atk</th>
+          <th>Substat</th>
+          <th>Passive</th>
+          <th>Type</th>
+          <th>Rarity</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for item in items %}
+        {% if forloop.last %}
+        <tr id="item-display">
+          <td>{{item.name}}</td>
+          <td></td>
+          <td>{{item.amount}}</td>
+          <td>{{item.description}}</td>
+          <td>{{item.base_atk}}</td>
+          <td>{{item.substat}}</td>
+          <td>{{item.weapon_passive}}</td>
+          <td>{{item.weapon_type}}</td>
+          <td>{{item.rarity}}</td>
+          <td>
+            {% if item.id %}
+            <a href="{% url 'main:increase_amount' item.id %}">
+              <button>Add Amount</button>
+            </a>
+
+            <a href="{% url 'main:decrease_amount' item.id %}">
+              <button>Reduce Amount</button>
+            </a>
+
+            <a href="{% url 'main:delete_item' item.id %}">
+              <button>Delete Item</button>
+            </a>
+
+            <a href="{% url 'main:edit_item' item.pk %}">
+              <button>
+                Edit
+              </button>
+            </a>
+            {% endif %}
+          </td>
+        </tr>
+
+        {% else %}
+        <tr>
+          <td>{{item.name}}</td>
+          <td></td>
+          <td>{{item.amount}}</td>
+          <td>{{item.description}}</td>
+          <td>{{item.base_atk}}</td>
+          <td>{{item.substat}}</td>
+          <td>{{item.weapon_passive}}</td>
+          <td>{{item.weapon_type}}</td>
+          <td>{{item.rarity}}</td>
+          <td>
+            {% if item.id %}
+            <a href="{% url 'main:increase_amount' item.id %}">
+              <button>Add Amount</button>
+            </a>
+
+            <a href="{% url 'main:decrease_amount' item.id %}">
+              <button>Reduce Amount</button>
+            </a>
+
+            <a href="{% url 'main:delete_item' item.id %}">
+              <button>Delete Item</button>
+            </a>
+
+            <a href="{% url 'main:edit_item' item.pk %}">
+              <button>Edit</button>
+            </a>
+            {% endif %}
+          </td>
+
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table> -->
+
+    <table id="product_table" class="table" style="width: 100%;"></table>
+
     <br />
-    
+
     <center>
       <a href="{% url 'main:create_item' %}">
         <div>
-          <button id="blue-button" style="width: 12%;">
+          <button class="button blue-button" style="width: 12%;">
             Add New Item
           </button>
         </div>
       </a>
-    
-      <h5>Sesi terakhir login: {{ last_login }}</h5>
-    
+
+      <!-- ======================================================================================================== -->
+
+      <br>
+      <button type="button" class="button blue-button" style="width: 12.5%;" data-bs-toggle="modal"
+        data-bs-target="#exampleModal">Add Item by AJAX</button>
+      <br>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Item</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="form" onsubmit="return false;">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="name" class="col-form-label">Name:</label>
+                  <input type="text" class="form-control" id="name" name="name"></input>
+                </div>
+                <div class="mb-3">
+                  <label for="amount" class="col-form-label">Amount:</label>
+                  <input type="number" class="form-control" id="amount" name="amount"></input>
+                </div>
+                <div class="mb-3">
+                  <label for="description" class="col-form-label">Description:</label>
+                  <textarea class="form-control" id="description" name="description"></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="base_atk" class="col-form-label">Base Atk:</label>
+                  <input type="number" class="form-control" id="base_atk" name="base_atk"></input>
+                </div>
+                <div class="mb-3">
+                  <label for="substat" class="col-form-label">Substat:</label>
+                  <input type="text" class="form-control" id="substat" name="substat"></input>
+                </div>
+                <div class="mb-3">
+                  <label for="weapon_passive" class="col-form-label">Passive:</label>
+                  <textarea class="form-control" id="weapon_passive" name="weapon_passive"></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="weapon_type" class="col-form-label">Type:</label>
+                  <input type="text" class="form-control" id="weapon_type" name="weapon_type"></input>
+                </div>
+                <div class="mb-3">
+                  <label for="rarity" class="col-form-label">Rarity:</label>
+                  <input type="text" class="form-control" id="rarity" name="rarity"></input>
+              </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Item</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================================================================================================== -->
+
+      <br>
+      <h6>Sesi terakhir login: {{ last_login }}</h6>
+      <br>
       <a href="{% url 'main:logout' %}">
         <div>
-          <button id="blue-button" style="width: 8%;">
+          <button class="button blue-button" style="width: 8%;">
             Logout
           </button>
         </div>
       </a>
+      <br>
     </center>
   </div>
 </div>
+
+<script>
+  async function getProducts() {
+    return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+  }
+
+  // BAGIAN INI YANG DIUBAH UNTUK TABEL
+  // async function refreshProducts() {
+  //   document.getElementById("product_table").innerHTML = ""
+  //   const products = await getProducts()
+  //   let htmlString = 
+  //     `<thead>
+  //       <tr>
+  //         <th>Name</th>
+  //         <th>Image</th>
+  //         <th>Amount</th>
+  //         <th>Description</th>
+  //         <th>Base Atk</th>
+  //         <th>Substat</th>
+  //         <th>Passive</th>
+  //         <th>Type</th>
+  //         <th>Rarity</th>
+  //         <th>Options</th>
+  //       </tr>
+  //     </thead>
+  //     <tbody>
+  //       {% for item in items %}
+  //       <tr>
+  //         <td>{{item.name}}</td>
+  //         <td></td>
+  //         <td>{{item.amount}}</td>
+  //         <td>{{item.description}}</td>
+  //         <td>{{item.base_atk}}</td>
+  //         <td>{{item.substat}}</td>
+  //         <td>{{item.weapon_passive}}</td>
+  //         <td>{{item.weapon_type}}</td>
+  //         <td>{{item.rarity}}</td>
+  //         <td>
+  //           <a href="{% url 'main:increase_amount' item.id %}">
+  //             <button>Add Amount</button>
+  //           </a>
+
+  //           <a href="{% url 'main:decrease_amount' item.id %}">
+  //             <button>Reduce Amount</button>
+  //           </a>
+
+  //           <a href="{% url 'main:delete_item' item.id %}">
+  //             <button>Delete Item</button>
+  //           </a>
+
+  //           <a href="{% url 'main:edit_item' item.pk %}">
+  //             <button>Edit</button>
+  //           </a>
+  //         </td>
+  //       </tr>
+  //       {% endfor %}
+  //     </tbody>`
+
+  async function refreshProducts() {
+    document.getElementById("product_table").innerHTML = ""
+    const products = await getProducts()
+    let htmlString = 
+      `<thead>
+        <tr style="text-align: center;">
+          <th>Name</th>
+          <th>Image</th>
+          <th>Amount</th>
+          <th>Description</th>
+          <th>Base Atk</th>
+          <th>Substat</th>
+          <th>Passive</th>
+          <th>Type</th>
+          <th>Rarity</th>
+          <th>Options</th>
+        </tr>
+      </thead>`
+    products.forEach((item) => {
+      htmlString +=
+      `<tbody>
+        <tr style="text-align: center;">
+          <td>${item.fields.name}</td>
+          <td></td>
+          <td>${item.fields.amount}</td>
+          <td>${item.fields.description}</td>
+          <td>${item.fields.base_atk}</td>
+          <td>${item.fields.substat}</td>
+          <td>${item.fields.weapon_passive}</td>
+          <td>${item.fields.weapon_type}</td>
+          <td>${item.fields.rarity}</td>
+          <td>
+              <button onClick="increase_amount/${item.id}">Add Amount</button>
+              <button onClick="decrease_amount/${item.id}">Reduce Amount</button>
+              <button onClick="delete_item/${item.id}">Delete Item</button>
+              <button onClick="edit_item/${item.pk}">Edit</button>
+          </td>
+        </tr>
+      </tbody>`
+    })
+
+    document.getElementById("product_table").innerHTML = htmlString
+  }
+
+  refreshProducts()
+
+  function addProduct() {
+    fetch("{% url 'main:add_product_ajax' %}", {
+      method: "POST",
+      body: new FormData(document.querySelector('#form'))
+    }).then(refreshProducts)
+
+    document.getElementById("form").reset()
+    return false
+  }
+
+  document.getElementById("button_add").onclick = addProduct
+</script>
 {% endblock content %}

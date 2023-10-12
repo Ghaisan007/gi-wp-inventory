@@ -16,6 +16,7 @@ Berikut adalah shortcut untuk tugas :
 - [Tugas 3](#tugas-3)
 - [Tugas 4](#tugas-4)
 - [Tugas 5](#tugas-5)
+- [Tugas 6](#tugas-6)
 
 # Tugas 2
 
@@ -637,3 +638,68 @@ Pada looping form, ditambahkan juga kode ini untuk menampilkan pesan jika pembua
 Pada bagian main ini, `body` digunakan untuk setting background image dari static folder pada main page. Main container digunakan untuk positioning, dan main sebagai box untuk tampilan main. ID selector title untuk styling khusus untuk `<h1>` pada main page.
 
 6. Pada `create_item.html`, _styling_ yang digunakan sama seperti pada `main.html` dan hanya dengan beberapa perubahan positioning.
+
+# Tugas 6
+
+## Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
+
+1. __Asynchronous programming__ proses jalannya program bisa dilakukan secara bersamaan tanpa harus menunggu proses antrian. Dalam _asynchronous programming_, tugas atau operasi yang memakan waktu tidak menghalangi eksekusi tugas lainnya. Sebaliknya, aplikasi dapat melanjutkan eksekusi tugas lainnya sambil menunggu hasil dari tugas yang asinkron. Tugas asinkron tidak menghentikan eksekusi program utama. Hal ini memungkinkan aplikasi untuk tetap responsif, bahkan jika ada banyak operasi yang memakan waktu.
+
+2. __Synchronous programming__ adalah proses jalannya program secara _sequential_. Dalam _synchronous programming_, tugas atau operasi dieksekusi secara berurutan, artinya setiap tugas harus menunggu tugas sebelumnya selesai sebelum dapat dijalankan. Jika tugas memakan waktu lama, maka seluruh aplikasi atau program akan terhenti (_blocking_) hingga tugas tersebut selesai. Hal ini dapat mengakibatkan kinerja aplikasi yang buruk, terutama dalam aplikasi berbasis antarmuka pengguna (GUI) yang merespons lambat.
+
+Sumber : [Memahami Synchronous dan Asynchronous dalam Pemrograman](https://community.algostudio.net/memahami-synchronous-dan-asynchronous-dalam-pemrograman/), [Asynchronous vs Synchronous Programming](https://binus.ac.id/malang/2022/05/asynchronous-vs-synchronous-programming/)
+
+## Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.
+
+__Paradigma *event-driven programming*__ adalah pendekatan dalam pemrograman di mana eksekusi program dikendalikan oleh peristiwa atau kejadian yang terjadi. Dalam konteks JavaScript dan AJAX, paradigma ini sangat umum digunakan karena keduanya sering digunakan untuk mengembangkan aplikasi web yang harus merespons interaksi dari pengguna atau permintaan jaringan.
+
+Penjelasan dari paradigma _event-driven programming_ adalah sebagai berikut:
+1. __Program merespons kejadian__
+Program akan menjalankan tindakan atau kode tertentu ketika suatu kejadian atau peristiwa tertentu terjadi. Kejadian ini bisa berasal dari berbagai sumber, seperti tindakan pengguna (misalnya, klik tombol), permintaan jaringan yang selesai, atau perubahan status elemen HTML.
+2. __Tidak ada urutan yang berurutan__
+Dalam paradigma ini, program tidak selalu dieksekusi secara berurutan dari atas ke bawah. Sebaliknya, program berjalan dalam mode "siap sedia" dan menunggu kejadian tertentu untuk merespons.
+3. __Pemisahan logika__
+Paradigma ini memungkinkan pemisahan logika program ke dalam tindakan atau _handler_ yang merespons kejadian tertentu. Hal ini dapat membuat kode menjadi lebih mudah dimengerti.
+
+Contoh penerapannya dalam tugas ini adalah sebagai berikut :
+```js
+document.getElementById("button_add").onclick = addProduct
+```
+Ketika elemen dengan ID `button_add` di-klik, fungsi `addProduct` akan dijalankan.
+
+Sumber : [Paradigma Pemrograman Event-Driven](https://osf.io/3s8tw/download#:~:text=Event%2DDriven%20programming%20juga%20bisa,berupa%20pesan%20dari%20program%20lainnya.)
+
+## Jelaskan penerapan asynchronous programming pada AJAX.
+
+__Penerapan asynchronous programming pada AJAX__ adalah salah satu contoh yang paling umum dari penggunaan pemrograman asinkron dalam pengembangan web. AJAX adalah teknologi yang memungkinkan untuk mengambil atau mengirim data dari atau ke server tanpa harus memuat ulang seluruh halaman web. Pada dasarnya, AJAX memungkinkan untuk menjalankan operasi secara asinkron, sehingga halaman web tetap responsif tanpa menghalangi pengguna.
+
+AJAX bukanlah teknologi dan bukan pula bahasa pemrograman. AJAX adalah sekumpulan teknik pengembangan web. Pada umumnya sistem ini terdiri atas:
+- __HTML/XHTML__ sebagai bahasa utama dan __CSS__ untuk menampilkan data.
+- __The Document Object Model (DOM)__ untuk menampilkan data yang dinamis beserta interaksinya.
+- __XML__ untuk pertukaran data, sedangkan XSLT untuk manipulasi data. Sebagian besar developer mulai mengganti XML dengan 
+- JSONkarena bentuknya yang mendekati JavaScript.
+- __Objek XMLHttpRequest__ untuk komunikasi tidak langsung (_asynschronous_).
+- __Bahasa pemrograman JavaScript__ untuk menyatukan semua teknologi ini.
+
+Sumber : [Apa Itu AJAX dan Bagaimana Cara Kerjanya?](https://www.hostinger.co.id/tutorial/apa-itu-ajax)
+
+## Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.
+
+__Fetch API__
+- Fetch API adalah bagian dari standar JavaScript modern dan relatif ringan. Fetch API merupakan API yang terpisah dan tidak memerlukan library eksternal. Hal ini membuatnya lebih efisien dalam hal ukuran dan kinerja.
+- Fetch API adalah teknologi yang lebih baru dan mencerminkan prinsip desain dan kebijakan modern. Ini mendukung Promises, sehingga lebih cocok untuk pemrograman asinkron yang lebih bersih.
+- Karena Fetch API adalah bagian dari JavaScript standar, kita dapat mengandalkan dukungan yang berkelanjutan dari browser. Ini juga membuat kode menjadi lebih _portable_ dan tidak bergantung pada libray eksternal.
+- Meskipun mendukung browser modern dengan baik, beberapa versi browser yang lebih lama mungkin tidak mendukung Fetch API. Namun, Anda dapat menggunakan polifil (polyfill) untuk menambahkan dukungan di browser lama.
+
+__Library jQuery__
+- jQuery adalah library JavaScript yang cukup besar yang mencakup banyak fitur lain selain AJAX. Jika hanya memerlukan fungsionalitas AJAX, penggunaan jQuery akan terasa lebih berat dan terkesan berlebihan.
+- jQuery telah ada selama beberapa waktu, dan meskipun masih berguna, beberapa aspek desain dan kebijakan dalam jQuery mungkin tidak sebanding dengan pendekatan yang lebih modern.
+- Library eksternal seperti jQuery memerlukan pemeliharaan khusus dan pembaruan terpisah dari kode aplikasi. Pembaruan versi jQuery atau perbaikan keamanan mungkin perlu dipantau dan diimplementasikan secara manual.
+- jQuery telah dirancang untuk memiliki kompatibilitas yang sangat baik dengan berbagai versi browser, termasuk yang lebih tua. Oleh karena itu, jika menggunakan browser dengan versi yang lebih lama, jQuery bisa menjadi pilihan yang lebih aman.
+
+Dengan demikian, penggunaan Fetch API akan menjadi solusi yang lebih baik, terutama dalam pengembangan aplikasi web modern. Fetch API lebih ringan, sesuai dengan standar, dan mendukung pembuatan _asynchronous programming_ supaya lebih mudah dipahami.
+
+Sumber : 
+
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+

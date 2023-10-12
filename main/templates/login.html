@@ -28,20 +28,20 @@
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
         text-align: center;
         padding: 30px;
-        width: 400px;
+        width: 450px;
     }
 </style>
 
 <div class="login-container">
     <div class = "login">
-        <h1>Welcome Traveler !</h1>
-        <h5>Please input your username and password !</h5>
+        <h2>Welcome Traveler !</h2>
+        <h6>Please input your username and password !</h6>
     
         <img class="centered-image" src="{% static 'paimon_wave.webp' %}" width="200">
         <br>
         <form method="POST" action="">
             {% csrf_token %}
-            <table>
+            <table style="margin-left: auto; margin-right: auto;">
                 <tr>
                     <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
                 </tr>
@@ -52,7 +52,7 @@
             </table>
             <br>
             <div class="centered-container">
-                <input id="blue-button" type="submit" value="Login">
+                <input class="button blue-button" type="submit" value="Login">
             </div>
         </form>
     

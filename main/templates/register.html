@@ -29,19 +29,24 @@
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
         text-align: center;
         padding: 30px;
-        width: 400px;
+        width: 550px;
+    }
+
+    .align-left {
+        text-align: left;
     }
 </style>
 
 <div class="register-container">
     <div class="register">
 
-        <h1 style="text-align: center;">Register</h1>
-        <h5>Create your username and password !</h5>
+        <h2 style="text-align: center;">Register</h2>
+        <h6>Create your username and password !</h6>
+        <br>
     
         <form method="POST">
             {% csrf_token %}
-            <table>
+            <table class="table">
                 {% for field in form %}
                 <tr>
                     <td>{{ field.label_tag }}</td>
@@ -54,7 +59,7 @@
                     <td>
                         <ul>
                             {% for error in field.errors %}
-                            <li>{{ error }}</li>
+                            <li class="align-left">{{ error }}</li>
                             {% endfor %}
                         </ul>
                     </td>
@@ -65,14 +70,14 @@
             </table>
             <br>
             <div class="centered-container">
-                <input id="blue-button" type="submit" name="submit" value="Register"/>
+                <input class="button blue-button" type="submit" name="submit" value="Register"/>
             </div>
         </form>
     
         {% if messages %}
         <ul>
             {% for message in messages %}
-            <li>{{ message }}</li>
+            <li class="align-left">{{ message }}</li>
             {% endfor %}
         </ul>
         {% endif %}
@@ -80,7 +85,7 @@
         <br>
         <a href="{% url 'main:login' %}">
             <div class="centered-container">
-                <button id="blue-button" style="width: 30%;">
+                <button class="button blue-button" style="width: 30%;">
                 Back
                 </button>
             </div>

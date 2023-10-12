@@ -1,5 +1,5 @@
 import datetime
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound, JsonResponse
 from django.core import serializers
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
@@ -10,6 +10,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages  
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import  csrf_exempt
 
 @login_required(login_url='/login')
 # Create your views here.
@@ -127,3 +128,28 @@ def edit_item(request, id):
 
     context = {'form': form}
     return render(request, "edit_item.html", context)
+
+def get_product_json(request):
+    product_item = Item.objects.all()
+    return HttpResponse(serializers.serialize('json', product_item))
+
+@csrf_exempt
+def add_product_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        amount = request.POST.get("amount")
+        description = request.POST.get("description")
+        base_atk = request.POST.get("base_atk")
+        substat = request.POST.get("substat")
+        weapon_passive = request.POST.get("weapon_passive")
+        weapon_type = request.POST.get("weapon_type")
+        rarity =  request.POST.get("rarity")
+        user = request.user
+
+        new_product = Item(name=name, amount=amount, description=description, base_atk=base_atk, substat=substat, weapon_passive=weapon_passive, 
+                           weapon_type=weapon_type, rarity=rarity, user=user)
+        new_product.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()

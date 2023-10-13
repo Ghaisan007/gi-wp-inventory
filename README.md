@@ -8,7 +8,7 @@ __Kelas   : PBP A__
 
 Program ini didesain untuk membuat sebuah _Weapon Inventory_ untuk game Genshin Impact. 
 
-Berikut adalah tautan menuju aplikasi Adaptable yang sudah di-deploy : https://gaelzen-io.adaptable.app/
+Berikut adalah tautan menuju aplikasi yang sudah di-deploy : [ghaisan-luqyana-tugas.pbp.cs.ui.ac.id](ghaisan-luqyana-tugas.pbp.cs.ui.ac.id)
 
 Berikut adalah shortcut untuk tugas :
 

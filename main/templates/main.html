@@ -165,8 +165,6 @@
         </div>
       </a>
 
-      <!-- ======================================================================================================== -->
-
       <br>
       <button type="button" class="button blue-button" style="width: 12.5%;" data-bs-toggle="modal"
         data-bs-target="#exampleModal">Add Item by AJAX</button>
@@ -222,8 +220,6 @@
           </div>
         </div>
       </div>
-
-      <!-- ======================================================================================================== -->
 
       <br>
       <h6>Sesi terakhir login: {{ last_login }}</h6>
@@ -329,10 +325,10 @@
           <td>${item.fields.weapon_type}</td>
           <td>${item.fields.rarity}</td>
           <td>
-              <button onClick="increase_amount/${item.id}">Add Amount</button>
-              <button onClick="decrease_amount/${item.id}">Reduce Amount</button>
-              <button onClick="delete_item/${item.id}">Delete Item</button>
-              <button onClick="edit_item/${item.pk}">Edit</button>
+              <button onClick="increase_amount(${item.id})">Add Amount</button>
+              <button onClick="decrease_amount(${item.id})">Reduce Amount</button>
+              <button onClick="delProduct(${item.pk})">Delete Item</button>
+              <button onClick="edit_item(${item.pk})">Edit</button>
           </td>
         </tr>
       </tbody>`
@@ -352,6 +348,18 @@
     document.getElementById("form").reset()
     return false
   }
+
+  function delProduct(item_id) {
+      fetch("{% url 'main:del_product_ajax' %}", {
+            method: "DELETE",
+            body: JSON.stringify({
+              id: item_id,
+            }),
+        }).then(refreshProducts)
+
+        document.getElementById("form").reset()
+        return false
+    }
 
   document.getElementById("button_add").onclick = addProduct
 </script>

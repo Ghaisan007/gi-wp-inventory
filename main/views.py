@@ -153,3 +153,14 @@ def add_product_ajax(request):
         return HttpResponse(b"CREATED", status=201)
 
     return HttpResponseNotFound()
+
+@csrf_exempt
+def del_product_ajax(request):
+    if request.method == 'DELETE':
+        items = Item.objects.filter(user=request.user)
+        deletedItem = items.get(pk = request.POST.get('id'))
+        deletedItem.delete()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()

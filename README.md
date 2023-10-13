@@ -699,7 +699,119 @@ __Library jQuery__
 
 Dengan demikian, penggunaan Fetch API akan menjadi solusi yang lebih baik, terutama dalam pengembangan aplikasi web modern. Fetch API lebih ringan, sesuai dengan standar, dan mendukung pembuatan _asynchronous programming_ supaya lebih mudah dipahami.
 
-Sumber : 
+Sumber : [Difference Between Fetch and jQuery](https://stackoverflow.com/questions/43017576/what-is-the-difference-between-fetch-and-jquery-ajax)
 
 ## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 
+1. Pertama-tama dibuat fungsi `get_product_json` untuk mengembalikan data JSON dengan pada `views.py`. Kemudian dibuat fungsi `add_product_ajax` untuk menambahkan item dengan AJAX dengan menyesuaikan _fields_ seperti berikut :
+```py
+@csrf_exempt
+def add_product_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        amount = request.POST.get("amount")
+        description = request.POST.get("description")
+        base_atk = request.POST.get("base_atk")
+        substat = request.POST.get("substat")
+        weapon_passive = request.POST.get("weapon_passive")
+        weapon_type = request.POST.get("weapon_type")
+        rarity =  request.POST.get("rarity")
+        user = request.user
+
+        new_product = Item(name=name, amount=amount, description=description, base_atk=base_atk, substat=substat, weapon_passive=weapon_passive, 
+                           weapon_type=weapon_type, rarity=rarity, user=user)
+        new_product.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
+```
+
+2. Setelah itu dibuat routing path pada `urls.py` untuk `get_product_json` dan `add_product_ajax`.
+
+3. Untuk menampilkan data _item_ dengan `Fetch()` API, pertama-tama table diubah menjadi kode sebagai berikut :
+```html
+<table id="product_table" class="table" style="width: 100%;"></table>
+```
+
+4. Kemudian dibuat block `<script>` dan ditambahkan fungsi baru dengan nama `getProducts()` dan `refreshProducts()` untuk mendapatkan data serta me-_refresh_ data item secara _asynchronous_, dimana untuk `refreshProducts()` disesuaikan dengan table yang telah dibuat sebelumnya.
+
+```js
+<script>
+  async function getProducts() {
+    return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+  }
+  ...
+</script>
+```
+
+```js
+<script>
+    ...
+    async function refreshProducts() {
+        document.getElementById("product_table").innerHTML = ""
+        const products = await getProducts()
+        let htmlString = 
+        `<thead>
+            <tr style="text-align: center;">
+            <th>Name</th>
+            <th>Image</th>
+            <th>Amount</th>
+            <th>Description</th>
+            <th>Base Atk</th>
+            <th>Substat</th>
+            <th>Passive</th>
+            <th>Type</th>
+            <th>Rarity</th>
+            <th>Options</th>
+            </tr>
+        </thead>`
+    products.forEach((item) => {
+      htmlString +=
+      `<tbody>
+        <tr style="text-align: center;">
+          <td>${item.fields.name}</td>
+          <td></td>
+          <td>${item.fields.amount}</td>
+          <td>${item.fields.description}</td>
+          <td>${item.fields.base_atk}</td>
+          <td>${item.fields.substat}</td>
+          <td>${item.fields.weapon_passive}</td>
+          <td>${item.fields.weapon_type}</td>
+          <td>${item.fields.rarity}</td>
+          <td>
+              <button onClick="increase_amount(${item.id})">Add Amount</button>
+              <button onClick="decrease_amount(${item.id})">Reduce Amount</button>
+              <button onClick="delProduct(${item.pk})">Delete Item</button>
+              <button onClick="edit_item(${item.pk})">Edit</button>
+          </td>
+        </tr>
+      </tbody>`
+    })
+
+    document.getElementById("product_table").innerHTML = htmlString
+  }
+
+  refreshProducts()
+  ...
+```
+
+5. Setelah itu, dibuat modal sebagai _Form_ untuk menambahkan item melalui AJAX, dan dibuat fungsi `addProduct()` pada block `<script>` dan menambahkan fungsi `onclick` pada button addProduct untuk menjalankan fungsi `addProduct()` :
+```js
+function addProduct() {
+    fetch("{% url 'main:add_product_ajax' %}", {
+      method: "POST",
+      body: new FormData(document.querySelector('#form'))
+    }).then(refreshProducts)
+
+    document.getElementById("form").reset()
+    return false
+  }
+```
+
+```js
+<script>
+    ...
+    document.getElementById("button_add").onclick = addProduct
+</script>
+```
